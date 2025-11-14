@@ -1,0 +1,24 @@
+---
+- name: Installing Enterprise Service (Ubuntu)
+  ansible.builtin.apt:
+    name: "{{ ubuntu_enterprise_service }}"
+    state: present
+  when: ansible_distribution == "Ubuntu"
+
+- name: Enabling Enterprise Service (Ubuntu)
+  ansible.builtin.service:
+    name: "{{ ubuntu_enterprise_service }}"
+    state: started
+  when: ansible_distribution == "Ubuntu"
+
+- name: Installing Enterprise Service (CentOS)
+  ansible.builtin.yum:
+    name: "{{ centos_enterprise_service }}"
+    state: present
+  when: ansible_distribution == "CentOS"
+
+- name: Enabling Enterprise Service (CentOS)
+  ansible.builtin.service:
+    name: "{{ centos_enterprise_service }}"
+    state: started
+  when: ansible_distribution == "CentOS"

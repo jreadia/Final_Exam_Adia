@@ -1,0 +1,23 @@
+---
+- hosts: all
+  become: true
+  pre_tasks:
+    
+    - name: Update apt cache (Ubuntu)
+      apt:
+        update_cache: yes
+      when: ansible_distribution == "Ubuntu"
+    
+    - name: Update yum cache (CentOS)
+      yum:
+        update_cache: yes
+      when: ansible_distribution == "CentOS"
+  
+- hosts: all
+  become: true
+  vars_files:
+    - config.yaml
+  roles:
+    - enterprise_service
+    # - monitoring_tool
+    - change_motd

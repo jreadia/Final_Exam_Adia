@@ -1,0 +1,12 @@
+---
+- name: Change MOTD (Ubuntu)
+  ansible.builtin.copy:
+    content: "Ansible Managed by {{ motd_username }}"
+    dest: /etc/motd
+  when: ansible_distribution == "Ubuntu"
+  
+- name: Change MOTD (CentOS)
+  ansible.builtin.copy:
+    content: "Ansible Managed by {{ motd_username }}"
+    dest: /etc/motd
+  when: ansible_distribution == "CentOS"

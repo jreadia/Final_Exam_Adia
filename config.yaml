@@ -1,0 +1,4 @@
+ubuntu_enterprise_service: apache2
+centos_enterprise_service: httpd
+
+motd_username: Adia
