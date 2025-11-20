@@ -19,5 +19,5 @@
     - config.yaml
   roles:
     - enterprise_service
-    # - monitoring_tool
+    - monitoring_tool
     - change_motd

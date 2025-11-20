@@ -1,0 +1,37 @@
+---
+# Grafana will be used as the monitoring tool
+- name: Add Grafana APT key
+  ansible.builtin.apt_key:
+    url: "{{ ubuntu_grafana_apt_key }}"
+    state: present
+  when: ansible_distribution == "Ubuntu"
+
+- name: Add Grafana APT repository
+  ansible.builtin.apt_repository:
+    repo: "{{ ubuntu_grafana_repo }}"
+    state: present
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install Grafana on Ubuntu
+  ansible.builtin.apt:
+    name: "{{ monitoring_tool_service }}"
+    state: present
+    update_cache: yes
+  when: ansible_distribution == "Ubuntu"
+
+- name: Add Grafana YUM repository
+  ansible.builtin.yum_repository:
+    "{{ centos_grafana_yum_repo }}"
+  when: ansible_distribution == "CentOS"
+
+- name: Install Grafana on CentOS
+  ansible.builtin.yum:
+    name: "{{ monitoring_tool_service }}"
+    state: present
+  when: ansible_distribution == "CentOS"
+
+- name: Ensure Grafana service is started and enabled (Ubuntu and CentOS)
+  ansible.builtin.service:
+    name: grafana-server
+    state: started
+    enabled: true

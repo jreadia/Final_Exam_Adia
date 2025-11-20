@@ -1,4 +1,19 @@
+# enterprise service names
 ubuntu_enterprise_service: apache2
 centos_enterprise_service: httpd
 
+# monitoring tool names and repositories
+ubuntu_grafana_apt_key: https://packages.grafana.com/gpg.key
+ubuntu_grafana_repo: "deb https://packages.grafana.com/oss/deb stable main"
+centos_grafana_yum_repo:
+  name: grafana
+  description: Grafana OSS
+  baseurl: https://packages.grafana.com/oss/rpm
+  gpgcheck: yes
+  gpgkey: https://packages.grafana.com/gpg.key
+  repo_gpgcheck: yes
+  enabled: yes
+monitoring_tool_service: grafana
+
+# motd configuration
 motd_username: Adia
